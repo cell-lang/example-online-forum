@@ -1,0 +1,76 @@
+type UserId  = user_id(Int);
+type GroupId = group_id(Int);
+
+schema OnlineForum {
+  next_id : Int = 0;
+
+  user(UserId)
+    username       : String [unique],
+    signup_date    : Date,
+    first_name     : String,
+    last_name      : String,
+    date_of_birth? : Date;
+
+  chat_group(GroupId)
+    name  : String,
+    admin : UserId;
+
+  member(UserId, GroupId)
+    joined_on : Date,
+    karma     : Int;
+
+  friends(UserId | UserId)
+    since : Time;
+
+  admin(_, id) -> user(id);
+  member(u, g) -> user(u), chat_group(g);
+  friends(u1, u2) -> user(u1), user(u2);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+OnlineForum.join_group(user: UserId, group: GroupId, date: Date) {
+  insert member(this.user, this.group)
+    joined_on = this.date,
+    karma     = 0;
+}
+
+OnlineForum.add_friendship(user1: UserId, user2: UserId, since: Time) {
+  insert friends(this.user1, this.user2)
+    since = this.since;
+}
+
+OnlineForum.delete_user(id: UserId) {
+  id = this.id;
+  delete user(id), friends(id, *);
+  for g <- member(id, ?)
+    leave_group(id, g);
+}
+
+OnlineForum.delete_group(id: GroupId) {
+  delete chat_group(this.id), member(*, this.id);
+}
+
+OnlineForum.leave_group(user: UserId, group: GroupId) {
+  leave_group(this.user, this.group);
+}
+
+using OnlineForum {
+  leave_group(UserId user, GroupId group) {
+    delete member(user, group);
+    members = [u : u <- member(?, group), u != user];
+    if members != [] {
+      new_admin = any(max_by(members, karma($, group)));
+      update admin(group, new_admin);
+    }
+    else
+      delete chat_group(group);
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+using OnlineForum {
+  [UserId] users_who_signed_up_on(Date d) = [u : u <- signup_date(?, d)];
+}
+

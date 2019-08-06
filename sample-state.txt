@@ -1,0 +1,125 @@
+( next_id: 7,
+
+  user: [
+    user_id(0),
+    user_id(1),
+    user_id(2),
+    user_id(3),
+    user_id(4),
+    user_id(5),
+    user_id(6)
+  ],
+
+  chat_group: [
+    group_id(0),
+    group_id(1)
+  ],
+
+  username: [
+    user_id(0) -> "miki",
+    user_id(1) -> "jonny",
+    user_id(2) -> "charlie",
+    user_id(3) -> "jack",
+    user_id(4) -> "luke",
+    user_id(5) -> "ed",
+    user_id(6) -> "neil"
+  ],
+
+  signup_date: [
+    user_id(0) -> `2016-04-12`,
+    user_id(1) -> `2016-10-07`,
+    user_id(2) -> `2016-07-15`,
+    user_id(3) -> `2016-12-21`,
+    user_id(4) -> `2016-02-04`,
+    user_id(5) -> `2016-07-11`,
+    user_id(6) -> `2017-01-02`
+  ],
+
+  first_name: [
+    user_id(0) -> "Michael",
+    user_id(1) -> "John",
+    user_id(2) -> "Charles",
+    user_id(3) -> "Jack",
+    user_id(4) -> "Luke",
+    user_id(5) -> "Edward",
+    user_id(6) -> "Neil"
+  ],
+
+  last_name: [
+    user_id(0) -> "Taylor",
+    user_id(1) -> "Taylor",
+    user_id(2) -> "Wang",
+    user_id(3) -> "Evans",
+    user_id(4) -> "Brown",
+    user_id(5) -> "Harris",
+    user_id(6) -> "Jackson"
+  ],
+
+  date_of_birth: [
+    user_id(0) -> `1995-02-12`,
+    user_id(1) -> `1997-06-27`,
+    user_id(2) -> `1988-08-19`,
+    user_id(3) -> `1992-05-04`,
+    user_id(4) -> `1986-12-19`,
+    user_id(5) -> `2000-08-30`,
+    user_id(6) -> `1995-05-03`
+  ],
+
+  name: [
+    group_id(0) -> "Politics",
+    group_id(1) -> "Football"
+  ],
+
+  admin: [
+    group_id(0) -> user_id(0),
+    group_id(1) -> user_id(5)
+  ],
+
+  member: [
+    user_id(0) -> group_id(0),
+    user_id(1) -> group_id(0),
+    user_id(2) -> group_id(0),
+    user_id(3) -> group_id(1),
+    user_id(4) -> group_id(1),
+    user_id(5) -> group_id(1),
+    user_id(6) -> group_id(0)
+  ],
+
+  joined_on: [
+    user_id(0), group_id(0), `2017-02-13`;
+    user_id(1), group_id(0), `2017-02-13`;
+    user_id(2), group_id(0), `2017-02-15`;
+    user_id(3), group_id(1), `2017-06-24`;
+    user_id(4), group_id(1), `2017-06-24`;
+    user_id(5), group_id(1), `2017-06-25`;
+    user_id(6), group_id(0), `2017-02-28`
+  ],
+
+  karma: [
+    user_id(0), group_id(0), 10;
+    user_id(1), group_id(0), 4;
+    user_id(2), group_id(0), 6;
+    user_id(3), group_id(1), 10;
+    user_id(4), group_id(1), 4;
+    user_id(5), group_id(1), 6;
+    user_id(6), group_id(0), 2
+  ],
+
+  friends: [
+    user_id(0), user_id(1);
+    user_id(0), user_id(2);
+    user_id(0), user_id(6);
+    user_id(1), user_id(2);
+    user_id(1), user_id(6);
+    user_id(2), user_id(4)
+  ],
+
+  since: [
+    user_id(0), user_id(1), `2017-06-27 18:04:35`;
+    user_id(0), user_id(2), `2017-09-08 08:23:38`;
+    user_id(0), user_id(6), `2017-02-13 16:12:18`;
+    user_id(1), user_id(2), `2017-11-07 11:03:44`;
+    user_id(1), user_id(6), `2017-09-10 08:57:23`;
+    user_id(2), user_id(4), `2016-02-29 22:41:07`
+  ]
+)
