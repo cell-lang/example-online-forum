@@ -29,6 +29,19 @@ schema OnlineForum {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+type AddUser = add_user(
+  id:            UserId,
+  username:      String,
+  signup_date:   Date,
+  first_name:    String,
+  last_name:     String,
+  date_of_birth: Date?
+);
+
+OnlineForum.AddUser {
+  fail;
+}
+
 OnlineForum.join_group(user: UserId, group: GroupId, date: Date) {
   insert member(this.user, this.group)
     joined_on = this.date,
