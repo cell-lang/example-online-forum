@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-using Cell.Facades;
+using Cell.Automata;
 
 
 class App {
@@ -35,10 +35,10 @@ class App {
       if (msg != "" && !msg.StartsWith("//")) {
         try {
           onlineForum.Execute(msg);
-          Console.WriteLine("Success: {0}\n", msg);
+          Console.WriteLine("Success: {0}", msg);
         }
         catch (Exception) {
-          Console.WriteLine("Failure: {0}\n", msg);
+          Console.WriteLine("Failure: {0}", msg);
         }
         // // Printing the state after the update
         // Console.WriteLine();
