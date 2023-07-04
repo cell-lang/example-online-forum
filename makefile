@@ -1,3 +1,8 @@
+cpp: cell/online-forum.cell cell/main.cpp
+	rm -rf tmp/ && mkdir tmp/
+	bin/cellc -d project.txt tmp/
+	g++ -ggdb -I tmp/ cell/main.cpp tmp/generated.cpp -o tmp/online-forum
+
 java: cell/online-forum.cell cell/main.java
 	rm -rf tmp/
 	mkdir tmp/ tmp/gen/ tmp/cls/
